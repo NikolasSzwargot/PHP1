@@ -1,3 +1,4 @@
+  
 <?php
   $text = <<<T
     zsk - Zespół
@@ -48,4 +49,46 @@ echo $allstar;
 echo wordwrap($allstar, 40, '<hr>');
 
 ob_clean();
+
+//usuwanie białyh znaków
+$name = "Łukasz";
+$name1 = "  Łukasz ";
+
+echo strlen($name);
+echo mb_strlen($name);
+
+echo mb_strlen($name1);
+echo mb_strlen(ltrim($name1));
+echo mb_strlen(rtrim($name1));
+echo mb_strlen(trim($name1));
+
+//przeszukiwanie ciagów znaków
+$address = "Poznań, ul. Polna 7, tel. (61) 123-45-67";
+$search = strstr($address, 'tel');
+echo $search, '<br>';
+
+$address = "Poznań, ul. Polna 7, tel. (61) 123-45-67";
+$search = stristr($address, 'Tel');
+echo $search, '<br>';
+
+//substr
+$name = "Janusz";
+echo substr($name, 3); //usz
+echo substr($name, 3, 2); //us
+
+echo substr(strstr('zsk@gmail.com','@'), 1); //gmail.com
+
+//przetwarzanie ciagów znaków
+$replace = str_replace("%imię%", "Janusz", "Masz na imię: %imię%");
+
+$login = "bączek";
+$censure = array('ą','ę','ś','ć','ż','ź','ć','ł','ń');
+$replace = array('a','e','s','c','z','z','c','l','n');
+
+$correctLogin = str_replace($censure, $replace, $login);
+
+echo <<<LOGIN
+  Login: $login<br>
+  Login po zamianie: $correctLogin<br>
+LOGIN;
  ?>
